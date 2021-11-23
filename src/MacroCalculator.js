@@ -23,7 +23,7 @@ const MacroCalculator = () => {
             <h4>Calories per day</h4>
           </Stack>
 
-          {/* <AppSearchFood /> */}
+          <AppSearchFood />
         </Stack>
       </Stack>
     </div>
