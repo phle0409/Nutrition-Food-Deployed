@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import IMAGE_REQUEST from './ImageGrid';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <IMAGE_REQUEST />
   </React.StrictMode>,
   document.getElementById('root')
 );
