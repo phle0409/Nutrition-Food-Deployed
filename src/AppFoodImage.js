@@ -1,5 +1,4 @@
 import usePixaBay from "./usePixaBay";
-import usePexel from "./usePexel";
 import { Placeholder, Figure, Col, Stack } from "react-bootstrap";
 import { run as runHolder } from 'holderjs/holder';
 import { useEffect } from 'react';
