@@ -1,4 +1,4 @@
-import { Stack, Form, FloatingLabel, Col, Row, Button } from "react-bootstrap";
+import { Stack, Form, FloatingLabel, Button } from "react-bootstrap";
 import { useState } from "react";
 
 const AppTDEE = (props) => {

@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import { Stack, Table, Alert, Placeholder } from "react-bootstrap";
 import useSearchNutrients from "./useSearchNutrients";
 
 const AppFoodNutrients = (props) => {
   const name = props.name;
-  const { data, isPending, error, empty } = useSearchNutrients(name);
 
+  const { data, isPending, error, empty } = useSearchNutrients(name);
   const unitNameFormat = (value) => {
     switch (value) {
       case "kJ":
@@ -17,6 +18,25 @@ const AppFoodNutrients = (props) => {
         return value.toLowerCase();
     }
   }
+
+  const filterNutrition = () => {
+    let resultFilter = null;
+    if (data !== null) {
+      resultFilter = data.map((nutrient, i) => {
+        if (nutrient.nutrientName.toLowerCase().includes('protein') ||
+          nutrient.nutrientName.toLowerCase().includes('carb') || nutrient.nutrientName.toLowerCase().includes('lipid')) {
+          return (<tr key={i}>
+            <td>{nutrient.nutrientName}</td>
+            <td>{nutrient.value}</td>
+            <td>{unitNameFormat(nutrient.unitName)}</td>
+          </tr>)
+        }
+      })
+    }
+    console.log(resultFilter)
+    return resultFilter;
+  }
+
 
   return (
     <Stack>
@@ -41,13 +61,7 @@ const AppFoodNutrients = (props) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((nutrient, i) => (
-              <tr key={i}>
-                <td>{nutrient.nutrientName}</td>
-                <td>{nutrient.value}</td>
-                <td>{unitNameFormat(nutrient.unitName)}</td>
-              </tr>
-            ))}
+            {data && filterNutrition()}
           </tbody>
         </Table>
       }
