@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Stack, Table, Alert, Placeholder } from "react-bootstrap";
 import useSearchNutrients from "./useSearchNutrients";
 

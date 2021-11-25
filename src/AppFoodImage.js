@@ -21,7 +21,7 @@ const AppFoodImage = (props) => {
         </Col>
       }
 
-      {empty &&
+      {/* {empty &&
         <Col>
           <Stack>
             <Figure>
@@ -30,7 +30,7 @@ const AppFoodImage = (props) => {
             </Figure>
           </Stack>
         </Col>
-      }
+      } */}
 
       {data.length > 0 &&
         <Col>
