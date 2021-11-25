@@ -1,6 +1,5 @@
 import './App.css';
-<<<<<<< HEAD
-import IMAGE_REQUEST from './ImageGrid';
+import HomeImageGrid from './HomeImageArray';
 
 import AppNavbar from './AppNavbar';
 import Home from './Home';
@@ -12,6 +11,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container } from 'react-bootstrap';
 
 function App() {
+  let image_array = HomeImageGrid();
+  //console.log(image_array);
+
   return (
     <Container className="mt-3 mb-3">
       <Router>
