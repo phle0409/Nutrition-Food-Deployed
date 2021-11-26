@@ -5,7 +5,7 @@ import useSpoonacular from './useSpoonacular'
 //from the Spoonacular API
 
 function randomInt(max) {
-    return Math.floor(Math.random*max);
+    return Math.floor(Math.random()*max);
 }
 
 function food_object(food_type, cuisine_name) {
@@ -46,7 +46,7 @@ const HomeImageGrid = (purpose="home-page")  => {
          url_array.push(to_url(food_type_array[rand_type_index], cuisine_array[rand_cuisine_index]));
         
     }
-    
+    console.log(url_array);
     let image_object_array = useSpoonacular(url_array);
 
     //now I should have ten random parings of cuisine and food type
