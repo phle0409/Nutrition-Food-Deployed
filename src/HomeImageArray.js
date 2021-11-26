@@ -14,7 +14,7 @@ function food_object(food_type, cuisine_name) {
 }
 
 function to_url(food_type, cuisine_name) {
-    let url = ` https://api.spoonacular.com/recipes/complexSearch?apiKey=79eef11486d54ee59840b008db673b2e&type=${food_type}&cuisine=${cuisine_name}&number=2`;
+    let url = ` https://api.spoonacular.com/recipes/complexSearch?apiKey=79eef11486d54ee59840b008db673b2e&type=${food_type}&addRecipeInformation=true&addRecipeNutrition=true&cuisine=${cuisine_name}&number=2`;
     return url;
 }
 
@@ -24,9 +24,9 @@ const HomeImageArray = ({stateChange = f=>f})  => {
 
 
     if(sessionStorage.getItem('Home_Page_Array') === null) {
-        const cuisine_string = "African American British Cajun Caribbean Chinese Eastern European European French German Greek Indian Irish Italian Japanese Jewish Korean Latin American Mediterranean Mexican Middle Eastern Nordic Southern Spanish Thai Vietnamese";
+        const cuisine_string = "African American British Cajun Caribbean Chinese Eastern%20European European French German Greek Indian Irish Italian Japanese Jewish Korean Latin%20American Mediterranean Mexican Middle%20Eastern Southern Spanish Thai Vietnamese";
         const cuisine_array = cuisine_string.split(" ");
-        const food_type_string = "main course side dish dessert appetizer salad bread breakfast soup beverage sauce marinade fingerfood snack drink";
+        const food_type_string = "main%20course side%20dish dessert appetizer";
         const food_type_array = food_type_string.split(" ");
 
         //I want a loop to add 10 different random cuisines from cuisine
@@ -43,10 +43,11 @@ const HomeImageArray = ({stateChange = f=>f})  => {
             url_array.push(to_url(food_type_array[rand_type_index], cuisine_array[rand_cuisine_index]));
             
         }
+        console.log(`This is array of urls I searched: ${url_array}`);
         //url list is found, now we need to call our axios fetch thing
         //useSpoonacular
         //misleading name, so add home at end: use_spoon_home
-        use_spoon_home(stateChange);
+        use_spoon_home(url_array, stateChange);
     }
     if(sessionStorage.getItem('Home_Page_Array') === null)
     {
@@ -62,4 +63,4 @@ const HomeImageArray = ({stateChange = f=>f})  => {
     }
 }
 
-export default HomeImageGrid;
+export default HomeImageArray;

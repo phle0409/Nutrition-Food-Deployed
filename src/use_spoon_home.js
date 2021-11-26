@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const use_spoon_home = (stateChange=f=>f)=> {
+const use_spoon_home = (url_array, stateChange=f=>f)=> {
     // let [results, setResults] = useState([]);
     // let [pending, setPending] = useState(true);
     // let [error, setError] = useState(null);
@@ -22,13 +22,15 @@ const use_spoon_home = (stateChange=f=>f)=> {
     Promise.allSettled(promises).then((results)=>{
         console.log(`These are my promise results: ${results}`);
         let to_add = JSON.stringify(responses);
-        //maybe want to give user disabled sessionStorage?
+        //maybe want to give user warning disabled sessionStorage?
+        //want to remove the items with 0 total_Results
+        //then to make pairs of images/ti
         sessionStorage.setItem('Home_Page_Array',to_add);
         stateChange(responses);
         console.log(stateChange);
     });
    
-    console.log("out of funciton "+index);
+
 
     // return {
     //     results,
@@ -37,4 +39,4 @@ const use_spoon_home = (stateChange=f=>f)=> {
     // };
 };
 
-export default useSpoonacular;
+export default use_spoon_home;
