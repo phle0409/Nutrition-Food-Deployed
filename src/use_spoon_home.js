@@ -12,7 +12,7 @@ const use_spoon_home = (url_array, stateChange=f=>f)=> {
     let promises = [];
     let responses = [];
 
-    for(let i = 0; i < 10; ++i) {
+    for(let i = 0; i < 12; ++i) {
         promises.push(axios.get(url_array[i]).then((results)=> {
             responses.push(results);
         })
@@ -21,13 +21,15 @@ const use_spoon_home = (url_array, stateChange=f=>f)=> {
 
     Promise.allSettled(promises).then((results)=>{
         console.log(`These are my promise results: ${results}`);
-        let to_add = JSON.stringify(responses);
+        
         //maybe want to give user warning disabled sessionStorage?
         //want to remove the items with 0 total_Results
-        //then to make pairs of images/ti
+        let full_items = responses.filter((item)=> {
+            return (item.status === 200 && item.data.totalResults > 0);
+        });
+        let to_add = JSON.stringify(full_items);
         sessionStorage.setItem('Home_Page_Array',to_add);
-        stateChange(responses);
-        console.log(stateChange);
+        stateChange(full_items);
     });
    
 

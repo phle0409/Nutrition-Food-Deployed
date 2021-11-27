@@ -1,8 +1,8 @@
-import HomeImageArray from './HomeImageArray';
+import HomeImageArray from './HomeImageGrid';
 import {useState} from 'react';
-import HomeImageGrid from './HomeImageArray';
+import HomeImageGrid from './HomeImageGrid';
 
-const Home = () => {
+const Home = ({setLink=f=>f}) => {
   let [my_array, set_my_Array] = useState([]);
   //let image_array = sessionStorage.getItem('HomePageArray');
 
@@ -12,6 +12,7 @@ const Home = () => {
     stateChange={(array)=>{
       set_my_Array(array);
     }} 
+    setLink={setLink}
     />
   );
 }

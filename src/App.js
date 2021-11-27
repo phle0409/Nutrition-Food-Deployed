@@ -1,6 +1,6 @@
 import './App.css';
-import HomeImageArray from './HomeImageArray';
-
+import HomeImageArray from './HomeImageGrid';
+import { useState } from 'react';
 import AppNavbar from './AppNavbar';
 import Home from './Home';
 import MacroCalculator from './MacroCalculator';
@@ -11,9 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container } from 'react-bootstrap';
 
 function App() {
-  //let image_array = HomeImageGrid();
-  //console.log(image_array);
-  
+// let [recipeInfo,setrecipeInfo] = useState(null);
+// console.log(`This is my recipe info: ${recipeInfo}`);
 
   return (
     <Container className="mt-3 mb-3">
@@ -22,10 +21,10 @@ function App() {
         <div className="content mt-3">
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home/>
             </Route>
-            <Route path="/recipe/:id">
-              <Recipe />
+            <Route path="/recipe">
+              <Recipe  />
             </Route>
             <Route path="/ingredient/:name">
               <Ingredient />
