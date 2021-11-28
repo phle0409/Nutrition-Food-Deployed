@@ -45,7 +45,7 @@ const Recipe = ({info, changeIngredient=f=>f}) => {
             {
             ingredients_arr.map((item,index)=>{
             return(<ListGroup.Item key={index} action onClick={()=>changeIngredient(item)}>
-              <Link to="/ingredient">
+              <Link to={`/ingredient/${item}`}>
               {item}
               </Link>
               </ListGroup.Item>);
