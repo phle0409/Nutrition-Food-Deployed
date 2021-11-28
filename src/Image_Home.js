@@ -1,7 +1,7 @@
 import "./ImageHome.css";
 import { Link } from 'react-router-dom';
 
-function ImageHome({info, src, key, alt}) {
+function ImageHome({setLink, info, src, key, alt}) {
     console.log(`I am in the image definition
     and the data is
     ${info.data.results[0].image}
@@ -9,9 +9,8 @@ function ImageHome({info, src, key, alt}) {
     return(
         <Link
         to='/recipe'
-        state={{recipeInfo: info}}
         >
-        <figure>
+        <figure onClick={()=>setLink(info)}>
             <img className="col-img" src={src} key={key} alt={alt} />
                 <figcaption>{alt}</figcaption>
         </figure>

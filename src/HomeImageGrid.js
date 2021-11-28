@@ -16,11 +16,11 @@ function food_object(food_type, cuisine_name) {
 }
 
 function to_url(food_type, cuisine_name) {
-    let url = ` https://api.spoonacular.com/recipes/complexSearch?apiKey=79eef11486d54ee59840b008db673b2e&type=${food_type}&addRecipeInformation=true&addRecipeNutrition=true&cuisine=${cuisine_name}&number=1`;
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=79eef11486d54ee59840b008db673b2e&type=${food_type}&addRecipeInformation=true&addRecipeNutrition=true&cuisine=${cuisine_name}&number=1`;
     return url;
 }
 
-const HomeImageGrid = ({stateChange = f=>f})  => {
+const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f})  => {
     //otherwise, I want to hard code request to the API for 10 different cuisine types
     //Should occur once at the start of the program
 
@@ -75,14 +75,14 @@ const HomeImageGrid = ({stateChange = f=>f})  => {
                 <div className="column">
                 {
                 column1.map((item)=>{
-                    return(<ImageHome info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
+                    return(<ImageHome setLink={setLink} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
                 })
                 }
                 </div>
                 <div className="column">
                 {
                     column2.map((item)=> {
-                        return(<ImageHome info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
+                        return(<ImageHome setLink={setLink} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
                     })
                 }
                 </div>
@@ -90,7 +90,7 @@ const HomeImageGrid = ({stateChange = f=>f})  => {
                 {
                     column3.map((item,index)=>{
                         console.log(`index: ${index}`);
-                        return(<ImageHome info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
+                        return(<ImageHome setLink={setLink} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
                     })
                 }
                 </div>

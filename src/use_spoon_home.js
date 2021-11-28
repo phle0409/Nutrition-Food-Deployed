@@ -33,12 +33,6 @@ const use_spoon_home = (url_array, stateChange=f=>f)=> {
     });
    
 
-
-    // return {
-    //     results,
-    //     pending,
-    //     error
-    // };
 };
 
 export default use_spoon_home;
