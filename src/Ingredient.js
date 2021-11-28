@@ -1,5 +1,4 @@
 import { Stack } from "react-bootstrap";
-import { useParams } from "react-router";
 import AppFoodCarousel from "./AppFoodCarousel";
 import AppFoodNutrients from "./AppFoodNutrients";
 import AppFoodGallery from "./AppFoodGallery";
