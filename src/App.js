@@ -23,7 +23,7 @@ function App() {
         <div className="content mt-3">
           <Switch>
             <Route exact path="/">
-              <Home setLink={(info)=>setrecipeInfo(info)} />
+              <Home setLink={(info)=>setrecipeInfo(info)} column_count={3} />
             </Route>
             <Route path="/recipe">
               <Recipe 

@@ -2,10 +2,6 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 const use_spoon_home = (url_array, stateChange=f=>f)=> {
-    // let [results, setResults] = useState([]);
-    // let [pending, setPending] = useState(true);
-    // let [error, setError] = useState(null);
-    // let [index, setIndex] = useState(0);
 
     //use axios to get data from API
    
