@@ -13,24 +13,24 @@ import { Container } from 'react-bootstrap';
 function App() {
   //passed into Home, so image click will convey the necessary info
   //also passed into Recipe, which displays the info
- let [recipeInfo,setrecipeInfo] = useState(null);
- //let [recipeSearched, setRecipeSearched] = useState(false);
- let [ingredientName, setIngredientName] = useState("");
+  let [recipeInfo, setrecipeInfo] = useState(null);
+  //let [recipeSearched, setRecipeSearched] = useState(false);
+  let [ingredientName, setIngredientName] = useState("");
   return (
     <Container className="mt-3 mb-3">
       <Router>
-        <AppNavbar changeRecipe={(recipe)=>setrecipeInfo(recipe)} />
+        <AppNavbar changeRecipe={(recipe) => setrecipeInfo(recipe)} />
         <div className="content mt-3">
           <Switch>
             <Route exact path="/">
               <Home setLink={(info)=>setrecipeInfo(info)} column_count={3} />
             </Route>
             <Route path="/recipe">
-              <Recipe 
-              info={recipeInfo} 
-              changeIngredient={(ingredient)=>setIngredientName(ingredient)} />
+              <Recipe
+                info={recipeInfo}
+                changeIngredient={(ingredient) => setIngredientName(ingredient)} />
             </Route>
-            <Route path="/ingredient">
+            <Route path="/ingredient/">
               <Ingredient ingredientName={ingredientName} />
             </Route>
             <Route path="/macro-calculator">

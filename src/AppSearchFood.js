@@ -4,7 +4,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import useSearchFood from "./useSearchFood";
 import { useEffect, useRef, useState } from 'react';
 
-const AppSearchFood = () => {
+const AppSearchFood = ({ TDEE }) => {
   const [query, setQuery] = useState("");
   const [selections, setSelections] = useState([]);
   const [totalEnergy, setTotalEnergy] = useState(0);
@@ -65,6 +65,20 @@ const AppSearchFood = () => {
     setTotalEnergy(total);
   }, [selections])
 
+  const consumedCal = () => {
+    if (totalEnergy > 0) {
+
+      let result = TDEE - totalEnergy
+      let str = ``;
+      if (result > 0) {
+        str = `You need ${result} calories to maintain your current weight.`
+      } else if (result < 0) {
+        str = `You've eaten more than your maintain calories ${result * (-1)}.`
+      }
+      return <h3 id="calorie">You consumed <span className="calorie">{totalEnergy}</span> kcal. <span className="calorie">{str}</span></h3>
+    }
+  }
+
   return (
     <Stack>
       <h4 className="mt-5 text-center">Add consumed food</h4>
@@ -97,8 +111,8 @@ const AppSearchFood = () => {
             {selections.map((selection, i) => (
               <tr key={i}>
                 <td>{selection.text}</td>
-                <td class="text-center">{selection.energy}</td>
-                <td class="text-center"><input type="number" data-id={selection.fdcId} value={selection.quantity} min="0"
+                <td className="text-center">{selection.energy}</td>
+                <td className="text-center"><input type="number" data-id={selection.fdcId} value={selection.quantity} min="0"
                   onChange={updateWithQuantity} style={{
                     width: "40px"
                   }} /></td>
@@ -107,10 +121,7 @@ const AppSearchFood = () => {
           </tbody>
         </Table>
       }
-
-      {totalEnergy > 0 &&
-        <p>You consumed {totalEnergy} kcal.</p>
-      }
+      {consumedCal()}
     </Stack>
   );
 }
