@@ -14,7 +14,6 @@ import Compare from "./Compare";
 function App() {
   //passed into Home, so image click will convey the necessary info
   //also passed into Recipe, which displays the info
-  console.log(`Here is my array length int start of APP: ${JSON.parse(sessionStorage.getItem("Home_Page_Array")).length}`)
   let [recipeInfo, setrecipeInfo] = useState(null);
   //let [recipeSearched, setRecipeSearched] = useState(false);
   let [ingredientName, setIngredientName] = useState("");
