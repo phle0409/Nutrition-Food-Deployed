@@ -18,7 +18,7 @@ function food_object(food_type, cuisine_name) {
 }
 
 function to_url(food_type, to_skip) {
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=79eef11486d54ee59840b008db673b2e&type=${food_type}&offset=${to_skip}&addRecipeInformation=true&addRecipeNutrition=true&number=1`;
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=57274b4371364b7dac7808cbe1bcb253&type=${food_type}&offset=${to_skip}&addRecipeInformation=true&addRecipeNutrition=true&number=1`;
     return url;
 }
 
@@ -70,14 +70,16 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, toCompare=f=>f, column
        
         let array = sessionStorage.getItem('Home_Page_Array');
         let decoded_array = JSON.parse(array);
-        
-        let column_length = Math.floor((decoded_array.length)/columnCount);
+        let decoded_length = decoded_array.length;
+        let column_length = Math.ceil((decoded_array.length)/columnCount);
+        console.log(column_length);
 
         function columns(index, column_per_page, data_array) {
             let array = [];
             let entry_limit = column_per_page*index + column_per_page;
             for(let i = index * column_per_page; i<entry_limit; ++i) {
                 //console.log("yep");
+                if(i < decoded_length) {
                 let item = data_array[i];
                 array.push(
                 <Col key={i}>
@@ -85,13 +87,14 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, toCompare=f=>f, column
                 </Col>
                 );
             }
+            }
             return array;
         }
         
         function rows(column_length, data_array, column_count) {
             let grid_array = [];
             for(let i =0; i < column_length; ++i) {
-                console.log("rows");
+                
                 grid_array.push(
                 <Row key={i}>
                     {columns(i,column_count,data_array)}
