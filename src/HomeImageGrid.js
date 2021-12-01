@@ -86,6 +86,12 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, toCompare=f=>f, column
                 <ImageHome setRemoved={()=>setRemoved(!removed)} index={i} compare={compare} setLink={setLink} toCompare={toCompare}  info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />
                 </Col>
                 );
+                
+            }
+            else {
+                array.push(
+                    <Col key={i}></Col>
+                );
             }
             }
             return array;
