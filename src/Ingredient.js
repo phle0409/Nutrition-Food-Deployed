@@ -1,7 +1,7 @@
 import { Stack } from "react-bootstrap";
 import AppFoodCarousel from "./AppFoodCarousel";
 import AppFoodNutrients from "./AppFoodNutrients";
-import AppFoodGallery from "./AppFoodGallery";
+import AppSpoonacularFoodGallery from "./AppSpoonacularFoodGallery";
 
 const Ingredient = ({ ingredientName }) => {
   //The argument is from the Recipe page that you clicked
@@ -11,7 +11,7 @@ const Ingredient = ({ ingredientName }) => {
       <Stack className="w-75 align-self-start">
         <h4>{ingredientName}</h4>
         <AppFoodCarousel name={ingredientName} />
-        <AppFoodGallery name={ingredientName} />
+        <AppSpoonacularFoodGallery name={ingredientName} />
       </Stack>
       <Stack className="w-25">
         <h4>Nutrition Facts</h4>
