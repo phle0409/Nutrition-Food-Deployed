@@ -1,0 +1,13 @@
+.image-sizing {
+    max-height: 10vh;
+    width: auto;
+    margin: 0.5vh 1vw;
+}
+
+.bottom-box {
+    max-height: 12vh;
+}
+
+#compare-margin {
+    margin-left: 2vw;
+}

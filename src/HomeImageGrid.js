@@ -23,10 +23,10 @@ function to_url(food_type, to_skip) {
 }
 
 
-const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, columnCount})  => {
+const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, toCompare=f=>f, columnCount, compare})  => {
     //otherwise, I want to hard code request to the API for 10 different cuisine types
     //Should occur once at the start of the program
-
+    let [removed, setRemoved] = useState(false);
 
     if(sessionStorage.getItem('Home_Page_Array') === null) {
         //const cuisine_string = "African American British Cajun Caribbean Chinese Eastern%20European European French German Greek Indian Irish Italian Japanese Jewish Korean Latin%20American Mediterranean Mexican Middle%20Eastern Southern Spanish Thai Vietnamese";
@@ -37,6 +37,8 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, columnCount})  => {
 
         //I want a loop to add 12 different random cuisines from cuisine
         //array to empty array and have a random type paired with them
+
+        console.log("I be in dat conditional render do");
 
         //I will use a list of urls
         let url_array = [];
@@ -65,24 +67,21 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, columnCount})  => {
     {
         //break up images into three arrays, each 33% of the total flex
         //size
+       
         let array = sessionStorage.getItem('Home_Page_Array');
         let decoded_array = JSON.parse(array);
+        
         let column_length = Math.floor((decoded_array.length)/columnCount);
-        console.log(`This is my column_length: ${columnCount}`);
-        //now I want to get three parts of this array
-        let column1 = decoded_array.slice(0,column_length); //first 1/3
-        let column2 = decoded_array.slice(column_length,(2*column_length)); //second 1/3
-        //console.log(`This is column2: ${column2.length}`)
-        let column3 = decoded_array.slice(2*column_length); //third 1/3
+
         function columns(index, column_per_page, data_array) {
             let array = [];
             let entry_limit = column_per_page*index + column_per_page;
             for(let i = index * column_per_page; i<entry_limit; ++i) {
-                console.log("yep");
+                //console.log("yep");
                 let item = data_array[i];
                 array.push(
-                <Col>
-                <ImageHome setLink={setLink} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />
+                <Col key={i}>
+                <ImageHome setRemoved={()=>setRemoved(!removed)} index={i} compare={compare} setLink={setLink} toCompare={toCompare}  info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />
                 </Col>
                 );
             }
@@ -91,12 +90,10 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, columnCount})  => {
         
         function rows(column_length, data_array, column_count) {
             let grid_array = [];
-            console.log("Ist there anybody out there?");
-            console.log(column_length);
             for(let i =0; i < column_length; ++i) {
                 console.log("rows");
                 grid_array.push(
-                <Row>
+                <Row key={i}>
                     {columns(i,column_count,data_array)}
                 </Row>);
             }
@@ -109,32 +106,6 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, columnCount})  => {
             }
             </Container>
         );
-            
-        //     <div id="flex">
-        //         <div className="column">
-        //         {
-        //         column1.map((item)=>{
-        //             return(<ImageHome setLink={setLink} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
-        //         })
-        //         }
-        //         </div>
-        //         <div className="column">
-        //         {
-        //             column2.map((item)=> {
-        //                 return(<ImageHome setLink={setLink} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
-        //             })
-        //         }
-        //         </div>
-        //         <div className="column">
-        //         {
-        //             column3.map((item,index)=>{
-        //                 console.log(`index: ${index}`);
-        //                 return(<ImageHome setLink={setLink} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />);
-        //             })
-        //         }
-        //         </div>
-        //     </div>
-        // );
     }
 }
 

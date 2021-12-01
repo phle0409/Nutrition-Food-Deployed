@@ -2,3 +2,7 @@
     width: 60vw;
     height: auto;
 }
+
+.button-margin {
+    margin-left: 8px;
+}

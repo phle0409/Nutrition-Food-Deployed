@@ -1,16 +1,34 @@
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col, Card, ListGroup, Table, Form, FormControl, Button } from 'react-bootstrap';
+import { Link, Redirect } from 'react-router-dom';
+import "./Recipe.css";
+import RecipeBody from './RecipeBody';
+
 
 const Recipe = ({info, changeIngredient=f=>f}) => {
+
+
   if(info != null) {
     if(info.data.totalResults === 0) {
       return (<h1>No Results were found for your search</h1>);
     }
+    // add the result to the homepage
+    // if(add === true) {
+
+    // let homepage = sessionStorage.getItem("Home_Page_Array");
+    // let old_home = JSON.parse(homepage);
+    // old_home.unshift(info);
+    // let new_home = JSON.stringify(old_home);
+    // sessionStorage.setItem("Home_Page_Array",new_home);
+    //   return <Redirect to="/" />
+    //   }
+       
+
     let ingredients = info.data.results[0].nutrition.ingredients;
     let recipe_steps_arr=info.data.results[0].analyzedInstructions[0].steps;
-    let ingredients_needed = info.data.results[0].analyzedInstructions[0];
+    let nutrients_array = info.data.results[0].nutrition.nutrients;
+    console.log(nutrients_array);
     let recipe_steps = recipe_steps_arr.map((item)=>{
         return item.step;
     });
@@ -18,73 +36,120 @@ const Recipe = ({info, changeIngredient=f=>f}) => {
       return item.name;
     });
     //if totalResults = 0, return a message about that
+
     return (
-      <Container fluid>
+      
+      <RecipeBody info={info} changeIngredient={changeIngredient} showButton={true}/> 
+    //   <Container fluid>
 
-        <Row className="p-10">
-          <Col></Col>
-          <Col xs={12} md={6} className="d-flex justify-content-center"> 
-        <img className="w-100" src={info.data.results[0].image} alt="food"/>
-           </Col> 
-           <Col></Col>
-        </Row>
-        <Row>
-          <Col>
-          </Col>
-          <Col xs={12} md={8} className="d-flex justify-content-center" >
-            <h1 className="text-center">{info.data.results[0].title}</h1>
-          </Col>
-          <Col></Col>
-        </Row>        
-        <Row>
-          <Col>
-          <Card className="w-100">
-          <Card.Body>
-            <Card.Header>Ingredients</Card.Header>
-            <ListGroup variant="flush">
-            {
-            ingredients_arr.map((item,index)=>{
-            return(<ListGroup.Item key={index} action onClick={()=>changeIngredient(item)}>
-              <Link to={`/ingredient/${item}`}>
-              {item}
-              </Link>
-              </ListGroup.Item>);
-            })
-            }      
-            </ListGroup>
-          </Card.Body>
-          </Card>
-          </Col>
+    //     <Row className="p-10">
+    //       <Col></Col>
+    //       <Col xs={12} md={6} className="d-flex justify-content-center"> 
+    //     <img className="w-100" src={info.data.results[0].image} alt="food"/>
+    //        </Col> 
+    //        <Col></Col>
+    //     </Row>
+    //     <Row>
+    //       <Col></Col>
+    //     <Col xs={12} sm={6}>
+    //         {/* <Form> */}
+    //           {/* <Form.Check type="checkbox">
+    //             <Form.Check.Input type="checkbox" isValid />
+    //             <Form.Check.Label className="button-margin">Add to Home Page</Form.Check.Label>
+    //           </Form.Check>
+    //         </Form> */}
+    //         <Link to="/">
+    //         <Button 
+    //         variant="outline-success"
+    //         onClick={()=>
+    //         { //setAdd(true)
+    //           let homepage = sessionStorage.getItem("Home_Page_Array");
+    //           let old_home = JSON.parse(homepage);
+    //           old_home.unshift(info);
+    //           let new_home = JSON.stringify(old_home);
+    //           sessionStorage.setItem("Home_Page_Array",new_home);
+    //         }
+    //         }>
+    //           Add To HomePage
+    //         </Button>
+    //         </Link>
+    //       </Col>
+    //     <Col></Col>
+    //     </Row>      
+          
+    //     <Row>
+    //       <Col sm={2}>
+    //       </Col>
+    //       <Col xs={12} md={8} className="d-flex justify-content-center" >
+    //         <h1 className="text-center">{info.data.results[0].title}</h1>
+    //       </Col>
+    //       <Col>
+    //       </Col>
+    //     </Row> 
+      
+    //     <Row>
+    //       <Col xs={12} md={4}>
+    //       <Card className="w-100">
+    //       <Card.Body>
+    //         <Card.Header>Ingredients</Card.Header>
+    //         <ListGroup variant="flush">
+    //         {
+    //         ingredients_arr.map((item,index)=>{
+    //         return(<ListGroup.Item key={index} action onClick={()=>changeIngredient(item)}>
+    //           <Link to={`/ingredient/${item}`}>
+    //           {item}
+    //           </Link>
+    //           </ListGroup.Item>);
+    //         })
+    //         }      
+    //         </ListGroup>
+    //       </Card.Body>
+    //       </Card>
+    //       </Col>
        
-        <Col xs={12} md={8}>
-          <Row>
-            <Col xs={8}>
-            <Card className="w-100">
-              <Card.Title>Recipe</Card.Title>
-              <Card.Subtitle>Steps</Card.Subtitle>
-              <ListGroup variant="flush">
-                {
-                recipe_steps.map((item, index) => {
-                return(<ListGroup.Item key={index}>{item}</ListGroup.Item>)
-                })
-                }
-              </ListGroup>
+    //     <Col xs={12} md={4}>
+ 
+    //         <Card className="w-100">
+    //           <Card.Title>Recipe</Card.Title>
+    //           <Card.Subtitle>Steps</Card.Subtitle>
+    //           <ListGroup variant="flush">
+    //             {
+    //             recipe_steps.map((item, index) => {
+    //             return(<ListGroup.Item key={index}>{item}</ListGroup.Item>)
+    //             })
+    //             }
+    //           </ListGroup>
 
-            </Card>
-            </Col>
-            <Col>
-            <Card className="w-100">
-
-            </Card>
-            </Col>
-          </Row>  
-        </Col>
-        </Row>
-    </Container>
+    //         </Card>
+    //         </Col>
+    //       <Col xs={12} md={4}>
+    //         <Card className="w-100">
+    //             <Table>
+    //               <thead>
+    //                 <tr>
+    //                   <th>Nutrient</th>
+    //                   <th>Amount(units)</th>
+    //                 </tr>
+    //               </thead>
+    //               <tbody>
+    //               {
+    //                 nutrients_array.map((item,index) => {
+    //                 return(<tr key={index}>   
+    //                   <td>{item.name}</td>
+    //                   <td>{item.amount}({item.unit})</td>
+    //                 </tr>)
+    //                 })
+    //               }
+    //               </tbody>
+    //             </Table>
+    //         </Card>
+    //       </Col>
+    //     </Row>
+    // </Container>
     );
   }
   else {
-    return (<h1>Please return to homepage</h1>);
+    return (<h1>Loading...</h1>);
   }
 }
 

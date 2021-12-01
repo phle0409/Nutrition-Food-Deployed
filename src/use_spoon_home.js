@@ -16,7 +16,7 @@ const use_spoon_home = (url_array, stateChange=f=>f)=> {
     }
 
     Promise.allSettled(promises).then((results)=>{
-        console.log(`These are my promise results: ${results}`);
+        //console.log(`These are my promise results: ${results}`);
         
         //maybe want to give user warning disabled sessionStorage?
         //want to remove the items with 0 total_Results

@@ -9,13 +9,26 @@ import Ingredient from './Ingredient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container } from 'react-bootstrap';
+import Compare from "./Compare";
 
 function App() {
   //passed into Home, so image click will convey the necessary info
   //also passed into Recipe, which displays the info
+  console.log(`Here is my array length int start of APP: ${JSON.parse(sessionStorage.getItem("Home_Page_Array")).length}`)
   let [recipeInfo, setrecipeInfo] = useState(null);
   //let [recipeSearched, setRecipeSearched] = useState(false);
   let [ingredientName, setIngredientName] = useState("");
+  let [compare,setCompare] = useState([]);
+
+
+  // let set_compare =(info)=> {
+  //   let compare_list = my_array.map((item)=>item);
+  //   console.log(`Before it is: ${my_array}`);
+  //   compare_list.push(info);
+  //   console.log("This is my list to compare" + compare_list);
+  //   setCompare(compare_list);
+  // }
+
   return (
     <Container className="mt-3 mb-3">
       <Router>
@@ -23,12 +36,16 @@ function App() {
         <div className="content mt-3">
           <Switch>
             <Route exact path="/">
-              <Home setLink={(info)=>setrecipeInfo(info)} column_count={3} />
+              <Home setLink={(info)=>setrecipeInfo(info)}  compare={compare} setCompare={setCompare} info={recipeInfo} column_count={3} />
             </Route>
             <Route path="/recipe">
               <Recipe
                 info={recipeInfo}
-                changeIngredient={(ingredient) => setIngredientName(ingredient)} />
+                changeIngredient={(ingredient) => setIngredientName(ingredient)}
+               />
+            </Route>
+            <Route path="/compare">
+              <Compare compare={compare} />
             </Route>
             <Route path="/ingredient/">
               <Ingredient ingredientName={ingredientName} />
