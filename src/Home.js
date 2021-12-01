@@ -13,9 +13,9 @@ const Home = ({setLink=f=>f, column_count=3, compare, setCompare}) => {
   let [my_array, set_my_Array] = useState([]);
   let set_compare =(info)=> {
     let compare_list = compare.map((item)=>item);
-    console.log(`Before it is: ${my_array}`);
+
     compare_list.push(info);
-    console.log("This is my list to compare" + compare_list);
+
     setCompare(compare_list);
   };
 
@@ -25,7 +25,7 @@ const Home = ({setLink=f=>f, column_count=3, compare, setCompare}) => {
     setCompare(compare_list);
   };
 
-  console.log(`Here is my array length int start of Home: ${JSON.parse(sessionStorage.getItem("Home_Page_Array")).length}`)
+ 
 
   return (
     <div>
