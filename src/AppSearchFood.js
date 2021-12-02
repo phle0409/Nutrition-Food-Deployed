@@ -11,7 +11,7 @@ const AppSearchFood = ({ TDEE }) => {
 
   const { data, isPending } = useSearchFood(query, 15);
   const filterBy = () => true;
-  const ref = useRef();
+  const ref = useRef(); //  Point to AsyncTypeHead
 
   const onSelect = (options) => {
     const option = options[0];

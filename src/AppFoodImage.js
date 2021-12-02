@@ -2,7 +2,6 @@ import usePixaBay from "./usePixaBay";
 import { Placeholder, Figure, Col, Stack } from "react-bootstrap";
 import { run as runHolder } from 'holderjs/holder';
 import { useEffect } from 'react';
-import usePexel from "./usePexel";
 
 const AppFoodImage = (props) => {
   useEffect(() => {
