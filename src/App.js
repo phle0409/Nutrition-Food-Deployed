@@ -6,7 +6,7 @@ import Home from './Home';
 import MacroCalculator from './MacroCalculator';
 import Recipe from './Recipe'
 import Ingredient from './Ingredient'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container } from 'react-bootstrap';
 import Compare from "./Compare";
