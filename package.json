@@ -1,5 +1,5 @@
 {
-  "homepage": "http://phle0409.github.io/Deployed-Nutrion-Food",
+  "homepage": "http://phle0409.github.io/Nutrition-Food-Deployed",
   "name": "food_nutrition_app",
   "version": "0.1.0",
   "private": true,
@@ -12,7 +12,6 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
-    "gh-pages": "^3.2.3",
     "holderjs": "^2.9.9",
     "pexels": "^1.3.0",
     "react": "^17.0.2",
@@ -49,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
