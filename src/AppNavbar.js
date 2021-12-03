@@ -34,10 +34,10 @@ const AppNavbar = ({ changeRecipe = f => f }) => {
   return (
     <Navbar className="border p3">
       <Container>
-        <Navbar.Brand href="#/">
+        <Navbar.Brand href="/">
           <h2>Food Nutrition</h2>
         </Navbar.Brand>
-        <Nav.Link href="#/macro-calculator"><Button>Macro Calculator</Button></Nav.Link>
+        <Nav.Link href="/macro-calculator"><Button>Macro Calculator</Button></Nav.Link>
         <Form className="d-flex" onSubmit={searchSubmit}>
           <FormControl
             {...searchProps}
@@ -48,7 +48,7 @@ const AppNavbar = ({ changeRecipe = f => f }) => {
           <Button type="submit" variant="outline-success">Search</Button>
         </Form>
       </Container>
-      {Searched && <Redirect to="recipe" />}
+      {Searched && <Redirect to="/recipe" />}
     </Navbar>
   );
 }

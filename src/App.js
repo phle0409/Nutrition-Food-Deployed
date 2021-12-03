@@ -1,12 +1,11 @@
 import './App.css';
-import HomeImageArray from './HomeImageGrid';
 import { useState } from 'react';
 import AppNavbar from './AppNavbar';
 import Home from './Home';
 import MacroCalculator from './MacroCalculator';
 import Recipe from './Recipe'
 import Ingredient from './Ingredient'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container } from 'react-bootstrap';
 import Compare from "./Compare";
