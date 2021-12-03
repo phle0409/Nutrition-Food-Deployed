@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function to_url(query) {
   let encoded_query = encodeURI(query);
-  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=79eef11486d54ee59840b008db673b2e&addRecipeInformation=true&addRecipeNutrition=true&query=${encoded_query}&number=1`;
+  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=60c7597dc1064999a07fc3558d0097ad&addRecipeInformation=true&addRecipeNutrition=true&query=${encoded_query}&number=1`;
   return url;
 }
 
