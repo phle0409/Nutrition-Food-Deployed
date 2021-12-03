@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Nutrition-Food-Deployed/static/css/main.39cd6871.chunk.css",
+    "main.js": "/Nutrition-Food-Deployed/static/js/main.49c5e29c.chunk.js",
+    "main.js.map": "/Nutrition-Food-Deployed/static/js/main.49c5e29c.chunk.js.map",
+    "runtime-main.js": "/Nutrition-Food-Deployed/static/js/runtime-main.4805a43a.js",
+    "runtime-main.js.map": "/Nutrition-Food-Deployed/static/js/runtime-main.4805a43a.js.map",
+    "static/css/2.36467490.chunk.css": "/Nutrition-Food-Deployed/static/css/2.36467490.chunk.css",
+    "static/js/2.7f6d2be3.chunk.js": "/Nutrition-Food-Deployed/static/js/2.7f6d2be3.chunk.js",
+    "static/js/2.7f6d2be3.chunk.js.map": "/Nutrition-Food-Deployed/static/js/2.7f6d2be3.chunk.js.map",
+    "static/js/3.ed00dd27.chunk.js": "/Nutrition-Food-Deployed/static/js/3.ed00dd27.chunk.js",
+    "static/js/3.ed00dd27.chunk.js.map": "/Nutrition-Food-Deployed/static/js/3.ed00dd27.chunk.js.map",
+    "index.html": "/Nutrition-Food-Deployed/index.html",
+    "static/css/2.36467490.chunk.css.map": "/Nutrition-Food-Deployed/static/css/2.36467490.chunk.css.map",
+    "static/css/main.39cd6871.chunk.css.map": "/Nutrition-Food-Deployed/static/css/main.39cd6871.chunk.css.map",
+    "static/js/2.7f6d2be3.chunk.js.LICENSE.txt": "/Nutrition-Food-Deployed/static/js/2.7f6d2be3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4805a43a.js",
+    "static/css/2.36467490.chunk.css",
+    "static/js/2.7f6d2be3.chunk.js",
+    "static/css/main.39cd6871.chunk.css",
+    "static/js/main.49c5e29c.chunk.js"
+  ]
+}
