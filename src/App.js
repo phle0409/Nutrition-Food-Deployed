@@ -17,7 +17,7 @@ function App() {
   let [recipeInfo, setrecipeInfo] = useState(null);
   //let [recipeSearched, setRecipeSearched] = useState(false);
   let [ingredientName, setIngredientName] = useState("");
-  let [compare,setCompare] = useState([]);
+  let [compare, setCompare] = useState([]);
 
 
   // let set_compare =(info)=> {
@@ -35,13 +35,13 @@ function App() {
         <div className="content mt-3">
           <Switch>
             <Route exact path="/">
-              <Home setLink={(info)=>setrecipeInfo(info)}  compare={compare} setCompare={setCompare} info={recipeInfo} column_count={3} />
+              <Home setLink={(info) => setrecipeInfo(info)} compare={compare} setCompare={setCompare} info={recipeInfo} column_count={3} />
             </Route>
             <Route path="/recipe">
               <Recipe
                 info={recipeInfo}
                 changeIngredient={(ingredient) => setIngredientName(ingredient)}
-               />
+              />
             </Route>
             <Route path="/compare">
               <Compare compare={compare} />
