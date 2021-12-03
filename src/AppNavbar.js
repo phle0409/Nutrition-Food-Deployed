@@ -6,12 +6,12 @@ import { useState } from "react";
 import axios from 'axios';
 
 function to_url(query) {
-  let encoded_query=encodeURI(query);
-  let url=`https://api.spoonacular.com/recipes/complexSearch?apiKey=79eef11486d54ee59840b008db673b2e&addRecipeInformation=true&addRecipeNutrition=true&query=${encoded_query}&number=1`;
+  let encoded_query = encodeURI(query);
+  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=60c7597dc1064999a07fc3558d0097ad&addRecipeInformation=true&addRecipeNutrition=true&query=${encoded_query}&number=1`;
   return url;
 }
 
-const AppNavbar = ({changeRecipe=f=>f}) => {
+const AppNavbar = ({ changeRecipe = f => f }) => {
   let [searchProps, resetSearch] = useSearch("");
   let [Searched, setSearched] = useState(false);
 
@@ -20,13 +20,13 @@ const AppNavbar = ({changeRecipe=f=>f}) => {
   const searchSubmit = (event) => {
     event.preventDefault();
     axios
-    .get(to_url(searchProps.value))
-    .then((results)=>{
-      changeRecipe(results);
-    })
-    .catch((error)=>{
-      alert(`Error occurred with request: ${error}`)
-    })
+      .get(to_url(searchProps.value))
+      .then((results) => {
+        changeRecipe(results);
+      })
+      .catch((error) => {
+        alert(`Error occurred with request: ${error}`)
+      })
     setSearched(true);
     resetSearch();
   }
@@ -40,15 +40,15 @@ const AppNavbar = ({changeRecipe=f=>f}) => {
         <Nav.Link href="/macro-calculator"><Button>Macro Calculator</Button></Nav.Link>
         <Form className="d-flex" onSubmit={searchSubmit}>
           <FormControl
-          {...searchProps} 
-          type="search" 
-          aria-label="Search"
-          placeholder="Search"
+            {...searchProps}
+            type="search"
+            aria-label="Search"
+            placeholder="Search"
           />
           <Button type="submit" variant="outline-success">Search</Button>
         </Form>
       </Container>
-      {Searched && <Redirect to="/recipe" / >}
+      {Searched && <Redirect to="/recipe" />}
     </Navbar>
   );
 }

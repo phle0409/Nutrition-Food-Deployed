@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import use_spoon_home from './use_spoon_home';
 import "./HomeImageArray.css";
 import ImageHome from './Image_Home';
@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 //from the Spoonacular API
 
 function randomInt(max) {
-    return Math.floor(Math.random()*max);
+    return Math.floor(Math.random() * max);
 }
 
 function food_object(food_type, cuisine_name) {
@@ -18,17 +18,17 @@ function food_object(food_type, cuisine_name) {
 }
 
 function to_url(food_type, to_skip) {
-    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=57274b4371364b7dac7808cbe1bcb253&type=${food_type}&offset=${to_skip}&addRecipeInformation=true&addRecipeNutrition=true&number=1`;
+    let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=60c7597dc1064999a07fc3558d0097ad&type=${food_type}&offset=${to_skip}&addRecipeInformation=true&addRecipeNutrition=true&number=1`;
     return url;
 }
 
 
-const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, toCompare=f=>f, columnCount, compare})  => {
+const HomeImageGrid = ({ stateChange = f => f, setLink = f => f, toCompare = f => f, columnCount, compare }) => {
     //otherwise, I want to hard code request to the API for 10 different cuisine types
     //Should occur once at the start of the program
     let [removed, setRemoved] = useState(false);
 
-    if(sessionStorage.getItem('Home_Page_Array') === null) {
+    if (sessionStorage.getItem('Home_Page_Array') === null) {
         //const cuisine_string = "African American British Cajun Caribbean Chinese Eastern%20European European French German Greek Indian Irish Italian Japanese Jewish Korean Latin%20American Mediterranean Mexican Middle%20Eastern Southern Spanish Thai Vietnamese";
         //const cuisine_array = cuisine_string.split(" ");
 
@@ -44,13 +44,13 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, toCompare=f=>f, column
         let url_array = [];
         let food_type_length = food_type_array.length;
         //let cuisine_array_length = cuisine_array.length;
-        for(let i=0; i < 18; i++) {
+        for (let i = 0; i < 18; i++) {
             //let rand_cuisine_index = randomInt(cuisine_array_length);
             let rand_type_index = randomInt(food_type_length);
             let num_to_skip = randomInt(900);
             //populate url_array with the proper queries
-            url_array.push(to_url(food_type_array[rand_type_index],num_to_skip));
-            
+            url_array.push(to_url(food_type_array[rand_type_index], num_to_skip));
+
         }
         //console.log(`This is array of urls I searched: ${url_array}`);
         //url list is found, now we need to call our axios fetch thing
@@ -63,56 +63,55 @@ const HomeImageGrid = ({stateChange = f=>f, setLink=f=>f, toCompare=f=>f, column
     // {
     //     return <h1>Images are loading...</h1>
     // }
-    else
-    {
+    else {
         //break up images into three arrays, each 33% of the total flex
         //size
-       
+
         let array = sessionStorage.getItem('Home_Page_Array');
         let decoded_array = JSON.parse(array);
         let decoded_length = decoded_array.length;
-        let column_length = Math.ceil((decoded_array.length)/columnCount);
+        let column_length = Math.ceil((decoded_array.length) / columnCount);
         console.log(column_length);
 
         function columns(index, column_per_page, data_array) {
             let array = [];
-            let entry_limit = column_per_page*index + column_per_page;
-            for(let i = index * column_per_page; i<entry_limit; ++i) {
+            let entry_limit = column_per_page * index + column_per_page;
+            for (let i = index * column_per_page; i < entry_limit; ++i) {
                 //console.log("yep");
-                if(i < decoded_length) {
-                let item = data_array[i];
-                array.push(
-                <Col key={i}>
-                <ImageHome setRemoved={()=>setRemoved(!removed)} index={i} compare={compare} setLink={setLink} toCompare={toCompare}  info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />
-                </Col>
-                );
-                
-            }
-            else {
-                array.push(
-                    <Col key={i}></Col>
-                );
-            }
+                if (i < decoded_length) {
+                    let item = data_array[i];
+                    array.push(
+                        <Col key={i}>
+                            <ImageHome setRemoved={() => setRemoved(!removed)} index={i} compare={compare} setLink={setLink} toCompare={toCompare} info={item} src={item.data.results[0].image} key={item.data.results[0].id} alt={`${item.data.results[0].title}`} />
+                        </Col>
+                    );
+
+                }
+                else {
+                    array.push(
+                        <Col key={i}></Col>
+                    );
+                }
             }
             return array;
         }
-        
+
         function rows(column_length, data_array, column_count) {
             let grid_array = [];
-            for(let i =0; i < column_length; ++i) {
-                
+            for (let i = 0; i < column_length; ++i) {
+
                 grid_array.push(
-                <Row key={i}>
-                    {columns(i,column_count,data_array)}
-                </Row>);
+                    <Row key={i}>
+                        {columns(i, column_count, data_array)}
+                    </Row>);
             }
             return grid_array;
         }
-        return(
+        return (
             <Container>
-            {
-                    rows(column_length,decoded_array, columnCount)
-            }
+                {
+                    rows(column_length, decoded_array, columnCount)
+                }
             </Container>
         );
     }
